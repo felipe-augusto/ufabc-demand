@@ -1,6 +1,6 @@
 # executar
 
-python test.pt -W ignore::DeprecationWarning
+python test.py -W ignore::DeprecationWarning
 
 # Pacotes necessários
 
