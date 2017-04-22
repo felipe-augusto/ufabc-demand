@@ -2,6 +2,34 @@ import json
 
 quad = '1q2017'
 
+new_cursos_ids = {
+  73 : 16,
+  76 : 20,
+  72 : 17,
+  60 :  1,
+  78 : 22,
+  66 : 10,
+  84 : 28,
+  77 : 21,
+  80 : 24,
+  67 : 11,
+  58 :  3,
+  70 : 14,
+  83 : 27,
+  82 : 26,
+  61 :  6,
+  74 : 18,
+  62 :  7,
+  79 : 23,
+  64 :  8,
+  57 :  2,
+  71 : 15,
+  69 : 13,
+  81 : 25,
+  63 :  9,
+  59 :  4
+}
+
 def read_requisicoes():
 	global quad
 
@@ -73,7 +101,13 @@ for index, disciplina in enumerate(disciplinas):
 		prepared_data[current_disciplina] = {}
 		prepared_data[current_disciplina]['obrigatorias'] = []
 		for obrigatoria in hashable[tmp_hash]['obrigatoriedades']:
-			prepared_data[current_disciplina]['obrigatorias'].append(obrigatoria['curso_id'])
+			if obrigatoria['curso_id'] in new_cursos_ids.keys():
+				curso_id = new_cursos_ids[obrigatoria['curso_id']]
+			else:
+				curso_id = obrigatoria['curso_id']
+			
+			prepared_data[current_disciplina]['obrigatorias'].append(curso_id)
+		
 		prepared_data[current_disciplina]['campus'] = disciplina['campus']
 		prepared_data[current_disciplina]['vagas'] = hashable[tmp_hash]['vagas']
 

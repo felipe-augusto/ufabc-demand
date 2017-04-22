@@ -2,34 +2,36 @@
 
 import json
 from random import randint
+import csv
 
 ids_cursos_ufabc =  {
-		'Bacharelado em Ciência da Computação': 16,
-		'Bacharelado em Ciência e Tecnologia': 20,
-		'Bacharelado em Ciências Biológicas': 17,
-		'Bacharelado em Ciências Econômicas': 1,
-		'Bacharelado em Ciências e Humanidades': 22,
-		'Bacharelado em Filosofia': 10,
-		'Bacharelado em Física': 28,
-		'Bacharelado em Matemática': 21,
-		'Bacharelado em Neurociência' : 24,
-		'Bacharelado em Planejamento Territorial': 11,
-		'Bacharelado em Políticas Públicas': 3,
-		'Bacharelado em Química': 14,
-		'Bacharelado em Relações Internacionais': 27,
-		'Engenharia Aeroespacial': 26,
-		'Engenharia Ambiental e Urbana': 6,
-		'Engenharia Biomédica': 18,
-		'Engenharia de Energia': 7,
-		'Engenharia de Gestão': 23,
-		'Engenharia de Informação' : 8,
-		'Engenharia de Instrumentação, Automação e Robótica': 2,
-		'Engenharia de Materiais': 15,
-		'Licenciatura em Ciências Biológicas': 13,
-		'Licenciatura em Física': 25,
-		'Licenciatura em Matemática': 9,
-		'Licenciatura em Química': 4
+	'Bacharelado em Ciência da Computação': 16,
+	'Bacharelado em Ciência e Tecnologia': 20,
+	'Bacharelado em Ciências Biológicas': 17,
+	'Bacharelado em Ciências Econômicas': 1,
+	'Bacharelado em Ciências e Humanidades': 22,
+	'Bacharelado em Filosofia': 10,
+	'Bacharelado em Física': 28,
+	'Bacharelado em Matemática': 21,
+	'Bacharelado em Neurociência' : 24,
+	'Bacharelado em Planejamento Territorial': 11,
+	'Bacharelado em Políticas Públicas': 3,
+	'Bacharelado em Química': 14,
+	'Bacharelado em Relações Internacionais': 27,
+	'Engenharia Aeroespacial': 26,
+	'Engenharia Ambiental e Urbana': 6,
+	'Engenharia Biomédica': 18,
+	'Engenharia de Energia': 7,
+	'Engenharia de Gestão': 23,
+	'Engenharia de Informação' : 8,
+	'Engenharia de Instrumentação, Automação e Robótica': 2,
+	'Engenharia de Materiais': 15,
+	'Licenciatura em Ciências Biológicas': 13,
+	'Licenciatura em Física': 25,
+	'Licenciatura em Matemática': 9,
+	'Licenciatura em Química': 4
 }
+
 
 def open_data_from_quad(quad):
 	with open('data/' + quad + '/prepared.json') as data_file:    
@@ -44,7 +46,6 @@ def transform_dict_to_array_and_sort(cursos_ids):
 	return cursos_ids_array
 
 cursos_ids_sorted_array = transform_dict_to_array_and_sort(ids_cursos_ufabc)
-
 disciplina_data = []
 
 def add_disciplina_data_to(current_array):
@@ -88,10 +89,19 @@ def add_cursos_obrigatorios_value(disciplina):
 
 def should_add_to_training_array():
 	# one in twenty
-	if randint(0,20) % 11 != 1:
+	if randint(0, 36) % 29 != 1:
 		return True
 	else:
 		return False
 
 def add_ratio_value(disciplina):
 	return disciplina['ratio']
+
+def start_csv(name):
+	csv_file = open('data/' + name + '.csv', 'wb')
+	return csv.writer(csv_file, delimiter=' ', quoting = csv.QUOTE_NONE)
+
+def add_line_to_csv(current_disciplina_array, current_y, training_csv):
+	current_disciplina_array.append(current_y)
+	training_csv.writerow(current_disciplina_array)
+	current_disciplina_array.pop()
