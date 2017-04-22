@@ -94,6 +94,12 @@ def should_add_to_training_array():
 	else:
 		return False
 
+def should_add_to_training_array_looking_for_best_error(amostras):
+	if randint(0,758) < amostras:
+		return True
+	else:
+		return False
+
 def add_ratio_value(disciplina):
 	return disciplina['ratio']
 
