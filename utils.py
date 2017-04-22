@@ -38,6 +38,12 @@ def open_data_from_quad(quad):
 		data = json.load(data_file)
 	return data
 
+def open_data_from_all_quads():
+	with open('data/prepared_all_quads.json') as data_file:    
+		data = json.load(data_file)
+	return data
+
+
 def transform_dict_to_array_and_sort(cursos_ids):
 	cursos_ids_array = []
 	for item in cursos_ids:
@@ -95,7 +101,7 @@ def should_add_to_training_array():
 		return False
 
 def should_add_to_training_array_looking_for_best_error(amostras):
-	if randint(0,758) < amostras:
+	if randint(0,1442) < amostras:
 		return True
 	else:
 		return False
