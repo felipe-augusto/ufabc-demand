@@ -111,3 +111,9 @@ def add_line_to_csv(current_disciplina_array, current_y, training_csv):
 	current_disciplina_array.append(current_y)
 	training_csv.writerow(current_disciplina_array)
 	current_disciplina_array.pop()
+
+def right_or_wrong(requisicoes_previstas, requisicoes_reais, thresold):
+	if abs(requisicoes_previstas - requisicoes_reais) < thresold:
+		return "Right!"
+	else:
+		return "Wrong!"

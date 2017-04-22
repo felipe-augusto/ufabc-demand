@@ -34,7 +34,7 @@ def add_to_csv(disciplinas):
 		utils.add_campus_value(current_disciplina)
 		utils.add_cr_aluno_value(current_disciplina)
 		utils.add_reprovacoes_value(current_disciplina)
-		# utils.add_vagas_value(current_disciplina)
+		utils.add_vagas_value(current_disciplina)
 		utils.add_turno_value(current_disciplina)
 		utils.add_cursos_obrigatorios_value(current_disciplina)
 
