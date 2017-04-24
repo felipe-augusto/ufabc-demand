@@ -1,6 +1,6 @@
 import json
 
-quad = '1q2017'
+quad = '2q2017'
 
 new_cursos_ids = {
   73 : 16,
@@ -97,6 +97,8 @@ prepared_data = {}
 for index, disciplina in enumerate(disciplinas):
 	tmp_hash = disciplina['disciplina'] + '@' + disciplina['turma'] + '@' + disciplina['turno'] + '@' + disciplina['campus'].replace(" do Campo", "")
 	if tmp_hash in hashable:
+		if hashable[tmp_hash]['vagas_ingressantes'] != None:
+			continue
 		current_disciplina = hashable[tmp_hash]['id']
 		prepared_data[current_disciplina] = {}
 		prepared_data[current_disciplina]['obrigatorias'] = []
